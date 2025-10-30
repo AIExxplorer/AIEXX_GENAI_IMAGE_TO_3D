@@ -191,113 +191,125 @@ flowchart LR
 
 ## 🚀 Instalação
 
-### 1. Clone o Repositório
+### Guia Rápido
 
-```bash
-git clone https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D.git
-cd AIEXX_GENAI_IMAGE_TO_3D
+Para instalação completa passo a passo, consulte:
+- **[QUICKSTART.md](QUICKSTART.md)** - Guia de início rápido (30 minutos)
+- **[CHECKLIST.md](CHECKLIST.md)** - Checklist completo de verificação
+
+### 1. Configure o Token Hugging Face
+
+```powershell
+# Windows PowerShell
+.\setup_env.ps1 -HF_TOKEN "seu_token_aqui"
 ```
 
-### 2. Configure o Ambiente Python
+### 2. Crie a Estrutura de Diretórios
 
-```bash
-# Criar ambiente virtual
-python -m venv venv
-
-# Ativar (Windows)
-.\venv\Scripts\activate
-
-# Ativar (Linux/macOS)
-source venv/bin/activate
-
-# Instalar dependências (quando disponível)
-pip install -r requirements.txt
+```powershell
+.\create_directories.ps1
 ```
 
-### 3. Instale Dependências Node.js
+### 3. Baixe os Modelos
 
-```bash
-npm install
+```powershell
+# Baixar todos os modelos (~30-60 min)
+.\download_models.ps1
+
+# OU baixar modelos específicos
+.\download_models.ps1 -Models controlnet,triposr
 ```
 
-### 4. Configure o Husky
+### 4. Verifique a Instalação
+
+```powershell
+# Verificar status geral
+.\monitor_status.ps1
+
+# Verificar modelos instalados
+.\monitor_status.ps1 -Models
+
+# Acompanhar downloads em tempo real
+.\monitor_status.ps1 -Live
+```
+
+### 5. Configure o ComfyUI
 
 ```bash
-npm run prepare
+# Instalar ComfyUI custom nodes necessários
+cd ComfyUI/custom_nodes
+
+# ComfyUI-3D-Pack (TripoSR, InstantMesh)
+git clone https://github.com/MrForExample/ComfyUI-3D-Pack
+cd ComfyUI-3D-Pack && pip install -r requirements.txt && cd ..
+
+# ComfyUI Manager (recomendado)
+git clone https://github.com/ltdrdata/ComfyUI-Manager
+
+# ComfyUI ControlNet Aux
+git clone https://github.com/Fannovel16/comfyui_controlnet_aux
+cd comfyui_controlnet_aux && pip install -r requirements.txt && cd ..
 ```
+
+---
+
+## 📚 Documentação
+
+O projeto inclui documentação completa para facilitar o uso:
+
+| Documento | Descrição |
+|-----------|-----------|
+| **[README.md](README.md)** | Este arquivo - Visão geral do projeto |
+| **[QUICKSTART.md](QUICKSTART.md)** | Guia de início rápido em 30 minutos |
+| **[CHECKLIST.md](CHECKLIST.md)** | Checklist completo de verificação e troubleshooting |
+| **[workflows/3d/README.md](workflows/3d/README.md)** | Documentação detalhada de workflows, parâmetros e exportação |
+
+### Scripts Disponíveis
+
+| Script | Função |
+|--------|--------|
+| `setup_env.ps1` | Configurar token Hugging Face |
+| `create_directories.ps1` | Criar estrutura de diretórios |
+| `download_models.ps1` | Baixar modelos do Hugging Face |
+| `monitor_status.ps1` | Monitorar status e verificar modelos |
+| `tools/blender_export_fbx.py` | Conversão OBJ → FBX via Blender |
 
 ---
 
 ## ⚙️ Configuração
 
-### 1. Token Hugging Face
+### Configuração Simplificada
 
-Configure a variável de ambiente com seu token:
-
-**PowerShell (Windows):**
-```powershell
-# Temporário (sessão atual)
-$env:HUGGING_FACE_HUB_TOKEN = "seu_token_aqui"
-
-# Permanente (usuário)
-[System.Environment]::SetEnvironmentVariable("HUGGING_FACE_HUB_TOKEN","seu_token_aqui","User")
-```
-
-**Bash (Linux/macOS):**
-```bash
-# Adicionar ao ~/.bashrc ou ~/.zshrc
-export HUGGING_FACE_HUB_TOKEN="seu_token_aqui"
-```
-
-### 2. Download de Modelos
-
-Execute o download dos modelos necessários:
-
-#### ControlNet SD1.5
-```bash
-# Baixar para: ComfyUI/models/controlnet/
-# Repositório: https://huggingface.co/lllyasviel/ControlNet-v1-1
-```
-
-Arquivos necessários:
-- `control_v11f1p_sd15_depth.safetensors`
-- `control_v11p_sd15_openpose.safetensors`
-- `control_v11p_sd15_canny.safetensors`
-- `control_v11f1e_sd15_tile.safetensors`
-
-#### Zero123 / Zero123++
-```bash
-# Baixar para: ComfyUI/models/zero123/
-# Coleções:
-# - https://huggingface.co/collections/ashawkey/zero123-6566b613ab4a2a82a12f53c3
-# - https://huggingface.co/collections/TencentARC/zero123-65fb3a9dbc3f5b4dcd8d55dd
-```
-
-#### TripoSR
-```bash
-# Baixar para: ComfyUI/models/triposr/
-# Repositório: https://huggingface.co/stabilityai/TripoSR
-```
-
-#### InstantMesh
-```bash
-# Baixar para: ComfyUI/models/instantmesh/
-# Repositório: https://huggingface.co/TencentARC/InstantMesh
-```
-
-### 3. Verificação
-
-Confira se os modelos foram baixados corretamente:
+Use os scripts PowerShell fornecidos:
 
 ```powershell
-# Windows PowerShell
-Get-Content "downloads_status.log" -Wait
+# 1. Configurar token (obter em https://huggingface.co/settings/tokens)
+.\setup_env.ps1 -HF_TOKEN "seu_token_aqui"
+
+# 2. Criar estrutura
+.\create_directories.ps1
+
+# 3. Baixar modelos
+.\download_models.ps1
+
+# 4. Verificar instalação
+.\monitor_status.ps1 -Models
 ```
 
-```bash
-# Linux/macOS
-tail -f downloads_status.log
-```
+### Modelos Necessários
+
+Os seguintes modelos serão baixados automaticamente pelo script `download_models.ps1`:
+
+| Modelo | Repositório | Tamanho Aprox. |
+|--------|-------------|----------------|
+| **ControlNet SD1.5** | [lllyasviel/ControlNet-v1-1](https://huggingface.co/lllyasviel/ControlNet-v1-1) | ~6 GB |
+| **Zero123/Zero123++** | [ashawkey/zero123](https://huggingface.co/collections/ashawkey/zero123-6566b613ab4a2a82a12f53c3) | ~10 GB |
+| **TripoSR** | [stabilityai/TripoSR](https://huggingface.co/stabilityai/TripoSR) | ~8 GB |
+| **InstantMesh** | [TencentARC/InstantMesh](https://huggingface.co/TencentARC/InstantMesh) | ~10 GB |
+
+**Total**: ~34-40 GB de download
+
+Para download manual, consulte os repositórios acima e coloque os arquivos nos respectivos diretórios em `ComfyUI/models/`
 
 ---
 

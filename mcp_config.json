@@ -1,0 +1,112 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub MCP Server - Acesso a repositórios, issues, PRs",
+      "capabilities": [
+        "search_repositories",
+        "get_file_contents",
+        "create_issue",
+        "list_commits",
+        "search_code"
+      ]
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\ComfyUI"
+      ],
+      "description": "Filesystem MCP Server - Acesso ao sistema de arquivos local",
+      "capabilities": [
+        "read_file",
+        "write_file",
+        "list_directory",
+        "search_files"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Memory MCP Server - Armazenamento persistente de contexto",
+      "capabilities": [
+        "store_memory",
+        "retrieve_memory",
+        "search_memory"
+      ]
+    }
+  },
+  "tools": {
+    "github": {
+      "enabled": true,
+      "autoConnect": true,
+      "rateLimiting": {
+        "requestsPerHour": 5000,
+        "burstSize": 100
+      }
+    },
+    "filesystem": {
+      "enabled": true,
+      "autoConnect": true,
+      "allowedPaths": [
+        "C:\\ComfyUI",
+        "C:\\ComfyUI\\ComfyUI",
+        "C:\\ComfyUI\\workflows",
+        "C:\\ComfyUI\\exports",
+        "C:\\ComfyUI\\tools"
+      ],
+      "excludePaths": [
+        "C:\\ComfyUI\\.env",
+        "C:\\ComfyUI\\**\\*.token",
+        "C:\\ComfyUI\\.git"
+      ]
+    },
+    "memory": {
+      "enabled": true,
+      "autoConnect": true,
+      "storageLocation": "C:\\ComfyUI\\.mcp\\memory"
+    }
+  },
+  "context": {
+    "projectName": "AIEXX_GENAI_IMAGE_TO_3D",
+    "projectType": "3D Pipeline",
+    "technologies": [
+      "ComfyUI",
+      "Python",
+      "PyTorch",
+      "DirectML",
+      "Blender"
+    ],
+    "goals": [
+      "Converter imagens 2D em malhas 3D",
+      "Suportar múltiplos formatos de exportação",
+      "Pipeline automatizado e eficiente"
+    ]
+  },
+  "optimization": {
+    "caching": {
+      "enabled": true,
+      "ttl": 3600
+    },
+    "parallelization": {
+      "enabled": true,
+      "maxConcurrentRequests": 5
+    },
+    "retryPolicy": {
+      "maxRetries": 3,
+      "backoffMultiplier": 2,
+      "initialDelay": 1000
+    }
+  }
+}

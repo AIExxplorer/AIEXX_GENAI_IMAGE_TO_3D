@@ -192,14 +192,32 @@ downloads_status.log
 .env
 .env.local
 .env.*.local
+.env.production
+.env.development
 *.env
 config.local.json
 secrets.json
+credentials.json
+auth.json
 
-# Tokens e credenciais
+# Tokens e credenciais - NUNCA COMMITAR!
 .huggingface/
 .hf_token
 *.token
+*_token.txt
+hf_token*
+huggingface_token*
+
+# API Keys
+*api_key*
+*apikey*
+*.key
+*.pem
+*.cert
+
+# MCP configurations com credenciais
+.mcp/credentials/
+mcp_config.local.json
 
 # ============================================
 # ComfyUI específico
