@@ -44,10 +44,10 @@ MODELS_CONFIG = {
         "repo_id": "lllyasviel/ControlNet-v1-1",
         "local_dir": BASE_DIR / "ComfyUI" / "models" / "controlnet",
         "files": [
-            "control_v11f1p_sd15_depth.safetensors",
-            "control_v11p_sd15_openpose.safetensors",
-            "control_v11p_sd15_canny.safetensors",
-            "control_v11f1e_sd15_tile.safetensors"
+            "control_v11f1p_sd15_depth.pth",
+            "control_v11p_sd15_openpose.pth",
+            "control_v11p_sd15_canny.pth",
+            "control_v11f1e_sd15_tile.pth"
         ],
         "priority": 1
     },
@@ -61,20 +61,22 @@ MODELS_CONFIG = {
         "note": "Modelo base Zero123"
     },
     "zero123plus": {
-        "repo_id": "TencentARC/Zero123Plus",
-        "local_dir": BASE_DIR / "ComfyUI" / "models" / "zero123",
+        "repo_id": "sudo-ai/zero123plus-v1.2",
+        "local_dir": BASE_DIR / "ComfyUI" / "models" / "zero123plus",
         "files": [
-            "model.safetensors"
+            "unet/diffusion_pytorch_model.safetensors",
+            "vae/diffusion_pytorch_model.safetensors",
+            "text_encoder/model.safetensors",
+            "vision_encoder/model.safetensors"
         ],
-        "rename_as": "zero123plus_v1.1.safetensors",
         "priority": 2,
-        "note": "Zero123++ para multi-view"
+        "note": "Zero123++ v1.2 para multi-view (diffusers)"
     },
     "triposr": {
         "repo_id": "stabilityai/TripoSR",
         "local_dir": BASE_DIR / "ComfyUI" / "models" / "triposr",
         "files": [
-            "model.safetensors",
+            "model.ckpt",
             "config.yaml"
         ],
         "priority": 3
@@ -83,10 +85,10 @@ MODELS_CONFIG = {
         "repo_id": "TencentARC/InstantMesh",
         "local_dir": BASE_DIR / "ComfyUI" / "models" / "instantmesh",
         "files": [
-            "diffusion_pytorch_model.safetensors",
-            "config.json"
+            "instant_mesh_large.ckpt"
         ],
-        "priority": 3
+        "priority": 3,
+        "note": "InstantMesh modelo large (melhor qualidade)"
     }
 }
 
