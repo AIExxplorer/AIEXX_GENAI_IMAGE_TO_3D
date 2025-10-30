@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "workflow_name": "01_zero123_multiview",
+  "description": "Imagem -> múltiplas vistas usando Zero123/Zero123++. Template anotado.",
+  "notes": {
+    "inputs": [
+      "single_image: caminho ou LoadImage node"
+    ],
+    "params": {
+      "model": "Zero123 ou Zero123++",
+      "views": 8,
+      "seed": 12345,
+      "guidance": 3.5
+    },
+    "requirements": [
+      "Colocar checkpoints em C:\\ComfyUI\\ComfyUI\\models\\zero123",
+      "Aceitar licenças no Hugging Face quando solicitado"
+    ]
+  },
+  "nodes": [],
+  "edges": []
+}
+

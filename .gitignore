@@ -1,0 +1,248 @@
+# ============================================
+# AIEXX GenAI Image to 3D - .gitignore
+# ============================================
+
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.hypothesis/
+.pytest_cache/
+htmlcov/
+.venv
+venv/
+ENV/
+env/
+.spyderproject
+.spyproject
+.ropeproject
+
+# ============================================
+# Node.js
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.pnp
+.pnp.js
+
+# ============================================
+# Modelos e Checkpoints (arquivos grandes)
+# ============================================
+# Zero123 / Zero123++
+ComfyUI/models/zero123/*.safetensors
+ComfyUI/models/zero123/*.ckpt
+ComfyUI/models/zero123/*.pt
+ComfyUI/models/zero123/*.pth
+
+# TripoSR
+ComfyUI/models/triposr/*.safetensors
+ComfyUI/models/triposr/*.ckpt
+ComfyUI/models/triposr/*.pt
+ComfyUI/models/triposr/*.pth
+ComfyUI/models/triposr/*.onnx
+
+# InstantMesh
+ComfyUI/models/instantmesh/*.safetensors
+ComfyUI/models/instantmesh/*.ckpt
+ComfyUI/models/instantmesh/*.pt
+ComfyUI/models/instantmesh/*.pth
+
+# ControlNet
+ComfyUI/models/controlnet/*.safetensors
+ComfyUI/models/controlnet/*.pth
+ComfyUI/models/controlnet/*.ckpt
+
+# Stable Diffusion e outros modelos
+ComfyUI/models/checkpoints/*.safetensors
+ComfyUI/models/checkpoints/*.ckpt
+ComfyUI/models/vae/*.safetensors
+ComfyUI/models/vae/*.ckpt
+ComfyUI/models/loras/*.safetensors
+ComfyUI/models/embeddings/*.safetensors
+ComfyUI/models/hypernetworks/*.safetensors
+
+# ============================================
+# Arquivos de exportação 3D
+# ============================================
+exports/obj/*.obj
+exports/obj/*.mtl
+exports/fbx/*.fbx
+exports/stl/*.stl
+exports/glb/*.glb
+exports/gltf/*.gltf
+# Mantém estrutura de pastas mas ignora arquivos grandes
+!exports/**/.gitkeep
+
+# ============================================
+# Arquivos temporários e cache
+# ============================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# ============================================
+# IDEs e Editores
+# ============================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs (PyCharm, WebStorm, etc)
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# ============================================
+# Logs e Databases
+# ============================================
+*.log
+logs/
+*.sql
+*.sqlite
+*.db
+
+# Status logs do projeto
+downloads_status.log
+
+# ============================================
+# Variáveis de ambiente e configurações sensíveis
+# ============================================
+.env
+.env.local
+.env.*.local
+*.env
+config.local.json
+secrets.json
+
+# Tokens e credenciais
+.huggingface/
+.hf_token
+*.token
+
+# ============================================
+# ComfyUI específico
+# ============================================
+ComfyUI/input/*
+ComfyUI/output/*
+ComfyUI/temp/*
+!ComfyUI/input/.gitkeep
+!ComfyUI/output/.gitkeep
+!ComfyUI/temp/.gitkeep
+
+# User data e custom nodes
+ComfyUI/custom_nodes/*/
+!ComfyUI/custom_nodes/README.md
+
+# ============================================
+# Blender e ferramentas 3D
+# ============================================
+*.blend1
+*.blend2
+*.blend@
+*.bphys
+
+# ============================================
+# Arquivos de sistema
+# ============================================
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+ehthumbs_vista.db
+
+# ============================================
+# Git LFS (para rastreamento de arquivos grandes)
+# ============================================
+.gitattributes
+
+# ============================================
+# Documentação gerada
+# ============================================
+docs/_build/
+site/
+
+# ============================================
+# Testes
+# ============================================
+.coverage
+.pytest_cache/
+test-results/
+*.test.js.snap
+
+# ============================================
+# Outros
+# ============================================
+*.bak
+*.orig
+*.rej
+.history/

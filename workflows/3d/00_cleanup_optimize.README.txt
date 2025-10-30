@@ -1,0 +1,15 @@
+Pipeline de limpeza/otimização (antes de exportar):
+
+- Remover vértices duplicados
+- Recalcular normais para fora
+- Preencher buracos (watertight p/ STL)
+- Simplificação (target polycount ou razão)
+- Remesh opcional (uniformizar topologia)
+- UV Unwrap (xatlas) se for texturizar
+- Checagem de non-manifold, faces invertidas
+
+Export presets:
+- OBJ: sem triangulação p/ Maya/ZBrush; com MTL/UVs; escala cm/m.
+- FBX: via Blender headless, sem embed textures; smoothing/tangents ON; FBX 2018/2019.
+- STL: binário, apenas geometria, mm; garantir watertight.
+- GLB: texturas embutidas, PBR básico, opcional Draco.

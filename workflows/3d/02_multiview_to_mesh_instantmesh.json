@@ -1,0 +1,22 @@
+{
+  "version": "0.0.1",
+  "workflow_name": "02_multiview_to_mesh_instantmesh",
+  "description": "Múltiplas vistas -> malha com InstantMesh -> export OBJ/GLB/STL/FBX.",
+  "notes": {
+    "inputs": [
+      "multi_view_images: lista/loop de imagens"
+    ],
+    "params": {
+      "reconstructor": "InstantMesh",
+      "texture_resolution": 2048,
+      "clean_up": true
+    },
+    "requirements": [
+      "Colocar pesos em C:\\ComfyUI\\ComfyUI\\models\\instantmesh",
+      "Exportações irão para C:\\ComfyUI\\exports\\{obj,glb,stl,fbx}"
+    ]
+  },
+  "nodes": [],
+  "edges": []
+}
+

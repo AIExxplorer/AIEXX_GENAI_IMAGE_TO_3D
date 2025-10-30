@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "workflow_name": "04_openpose_or_depth_guided_recon",
+  "description": "Pose/Depth -> reconstrução guiada -> exportações.",
+  "notes": {
+    "inputs": [
+      "image",
+      "control: openpose|depth"
+    ],
+    "params": {
+      "controlnet": [
+        "control_v11p_sd15_openpose",
+        "control_v11f1p_sd15_depth"
+      ],
+      "guidance": 2.5
+    },
+    "requirements": [
+      "Colocar ControlNet SD1.5 em C:\\ComfyUI\\ComfyUI\\models\\controlnet",
+      "Auxiliares OpenPose/Depth baixam on-demand"
+    ]
+  },
+  "nodes": [],
+  "edges": []
+}
+

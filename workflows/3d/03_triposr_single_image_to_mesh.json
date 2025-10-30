@@ -1,0 +1,21 @@
+{
+  "version": "0.0.1",
+  "workflow_name": "03_triposr_single_image_to_mesh",
+  "description": "Imagem única -> malha com TripoSR -> exportações.",
+  "notes": {
+    "inputs": [
+      "single_image"
+    ],
+    "params": {
+      "reconstructor": "TripoSR",
+      "texture_resolution": 2048,
+      "scale_units": "cm"
+    },
+    "requirements": [
+      "Colocar pesos em C:\\ComfyUI\\ComfyUI\\models\\triposr"
+    ]
+  },
+  "nodes": [],
+  "edges": []
+}
+
