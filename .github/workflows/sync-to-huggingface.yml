@@ -1,0 +1,36 @@
+name: Sync to Hugging Face
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Instalar git-lfs se necessário
+          git lfs install
+          
+          # Configurar credenciais do Hugging Face
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          
+          # Adicionar remote do Hugging Face (ajustar URL conforme necessário)
+          # Formato: https://USER:$HF_TOKEN@huggingface.co/spaces/USERNAME/REPO-NAME
+          git remote add hf https://AIExxplorer:$HF_TOKEN@huggingface.co/spaces/AIEXX/genai-image-to-3d || true
+          
+          # Push para o Hugging Face
+          git push hf main --force
+

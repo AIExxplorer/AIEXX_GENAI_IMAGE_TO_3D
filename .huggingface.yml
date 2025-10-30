@@ -1,0 +1,55 @@
+# Configuração de integração com Hugging Face
+# Este arquivo configura a sincronização automática entre GitHub e Hugging Face
+
+# Nome do repositório no Hugging Face (será criado)
+repo_name: AIEXX/genai-image-to-3d
+
+# Tipo de repositório no HF
+repo_type: space  # ou 'model' dependendo do uso
+
+# Branch padrão
+default_branch: main
+
+# Arquivos a serem sincronizados
+include:
+  - README.md
+  - LICENSE
+  - TODO.md
+  - package.json
+  - tools/**
+  - workflows/**
+  - exports/**
+
+# Arquivos a serem excluídos da sincronização
+exclude:
+  - .git/**
+  - .venv*/**
+  - node_modules/**
+  - ComfyUI/**
+  - "*.log"
+  - .env*
+  - .husky/**
+
+# Metadados do Space/Model
+metadata:
+  title: "AIEXX GenAI Image to 3D"
+  emoji: "🎨"
+  colorFrom: "blue"
+  colorTo: "purple"
+  sdk: "gradio"  # ou "streamlit" se preferir
+  sdk_version: "4.0.0"
+  app_file: "app.py"  # arquivo principal (a ser criado)
+  pinned: false
+  license: "mit"
+  tags:
+    - 3d-reconstruction
+    - image-to-3d
+    - zero123
+    - triposr
+    - instantmesh
+    - controlnet
+    - comfyui
+    - generative-ai
+    - stable-diffusion
+    - computer-vision
+
