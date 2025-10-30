@@ -4,11 +4,13 @@
 
 ### Pipeline Completo para Conversão de Imagens 2D em Malhas 3D
 
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-Compatible-orange.svg)](https://github.com/comfyanonymous/ComfyUI)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Compatible-yellow)](https://huggingface.co/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Models Downloaded](https://img.shields.io/badge/models-12%20downloaded-brightgreen.svg)](https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D)
 
 ---
 
@@ -300,16 +302,17 @@ Use os scripts PowerShell fornecidos:
 
 Os seguintes modelos serão baixados automaticamente pelo script `download_models.ps1`:
 
-| Modelo | Repositório | Tamanho Aprox. |
-|--------|-------------|----------------|
-| **ControlNet SD1.5** | [lllyasviel/ControlNet-v1-1](https://huggingface.co/lllyasviel/ControlNet-v1-1) | ~6 GB |
-| **Zero123/Zero123++** | [ashawkey/zero123](https://huggingface.co/collections/ashawkey/zero123-6566b613ab4a2a82a12f53c3) | ~10 GB |
-| **TripoSR** | [stabilityai/TripoSR](https://huggingface.co/stabilityai/TripoSR) | ~8 GB |
-| **InstantMesh** | [TencentARC/InstantMesh](https://huggingface.co/TencentARC/InstantMesh) | ~10 GB |
+| Modelo | Repositório | Arquivos | Status |
+|--------|-------------|----------|--------|
+| **ControlNet SD1.5** | [lllyasviel/ControlNet-v1-1](https://huggingface.co/lllyasviel/ControlNet-v1-1) | 4 arquivos .pth (~5.8 GB) | ✅ |
+| **Zero123** | [cvlab/zero123-weights](https://huggingface.co/cvlab/zero123-weights) | 105000.ckpt (~4.5 GB) | ✅ |
+| **Zero123++ v1.2** | [sudo-ai/zero123plus-v1.2](https://huggingface.co/sudo-ai/zero123plus-v1.2) | 4 componentes (~3.5 GB) | ✅ |
+| **TripoSR** | [stabilityai/TripoSR](https://huggingface.co/stabilityai/TripoSR) | model.ckpt + config (~1.7 GB) | ✅ |
+| **InstantMesh** | [TencentARC/InstantMesh](https://huggingface.co/TencentARC/InstantMesh) | instant_mesh_large.ckpt (~5 GB) | ✅ |
 
-**Total**: ~34-40 GB de download
+**Total**: ~20 GB | **12 arquivos baixados** ✅
 
-Para download manual, consulte os repositórios acima e coloque os arquivos nos respectivos diretórios em `ComfyUI/models/`
+> **Nota**: O script de download (`download_models.py`) já foi corrigido e testado. Todos os modelos foram baixados com sucesso em 30/10/2025.
 
 ---
 
@@ -520,6 +523,27 @@ O **Husky** validará automaticamente seus commits antes do push! ✅
 ---
 
 ## 📊 Status do Projeto
+
+**Versão Atual**: v0.1.0 (30 de Outubro de 2025)
+
+### Progresso Geral: 45% 🟦🟦🟦🟦⬜⬜⬜⬜⬜⬜
+
+| Componente | Status | Progresso |
+|------------|--------|-----------|
+| **Estrutura de Diretórios** | ✅ Completo | 100% |
+| **Scripts de Automação** | ✅ Completo | 100% |
+| **Download de Modelos** | ✅ Completo | 100% (12/12 arquivos) |
+| **Documentação** | ✅ Completo | 100% |
+| **Workflows ComfyUI** | 🟡 Em Progresso | 25% (templates criados) |
+| **Testes e Validação** | ⏳ Pendente | 0% |
+| **Integração Hugging Face** | 🟡 Configurado | 50% (aguardando Space) |
+
+### Últimas Atualizações
+
+- ✅ **v0.1.0** (30/10/2025): Setup inicial completo, todos os modelos baixados
+- ✅ Correção de nomes de arquivos nos modelos (ControlNet, TripoSR, Zero123++, InstantMesh)
+- ✅ 12 arquivos de modelos baixados com sucesso (~20 GB)
+- ✅ Scripts PowerShell e Python testados e funcionais
 
 Veja o arquivo **[TODO.md](TODO.md)** para uma lista completa de tarefas pendentes e em progresso.
 
