@@ -1,1 +1,11 @@
-Resumo de progresso criado. Atualizações em andamento.
+Última atualização: 2025-10-30 02:52:50
+
+RESUMO DO DOWNLOAD
+============================================================
+controlnet: 4 OK, 0 FALHAS
+zero123: 1 OK, 0 FALHAS
+zero123plus: 4 OK, 0 FALHAS
+triposr: 2 OK, 0 FALHAS
+instantmesh: 1 OK, 0 FALHAS
+
+Total: 12 sucessos, 0 falhas
