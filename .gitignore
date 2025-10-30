@@ -5,6 +5,12 @@
 # ============================================
 # Python
 # ============================================
+# Virtual environments
+.venv/
+.venv*/
+venv/
+ENV/
+env/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -51,6 +57,11 @@ env/
 .spyderproject
 .spyproject
 .ropeproject
+
+# ============================================
+# ComfyUI (repositório aninhado)
+# ============================================
+ComfyUI/
 
 # ============================================
 # Node.js
