@@ -71,7 +71,7 @@ function Check-Models {
     $foundFiles = 0
 
     foreach ($modelName in $models.Keys) {
-        Write-Host "$modelName:" -ForegroundColor Yellow
+        Write-Host "${modelName}:" -ForegroundColor Yellow
         $modelPath = Join-Path $baseDir $models[$modelName].path
 
         foreach ($file in $models[$modelName].files) {
