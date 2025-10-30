@@ -275,3 +275,68 @@ test-results/
 *.orig
 *.rej
 .history/
+
+# ============================================
+# AIEXX System - Novos Diretórios
+# ============================================
+
+# Workflows organizados
+workflows/3d/basic/*.png
+workflows/3d/basic/*.jpg
+workflows/3d/advanced/*.png
+workflows/3d/advanced/*.jpg
+workflows/3d/experimental/*.json
+workflows/3d/experimental/*.png
+
+# Assets
+assets/textures/**/*.png
+assets/textures/**/*.jpg
+assets/textures/**/*.exr
+assets/hdris/**/*.hdr
+assets/hdris/**/*.exr
+assets/references/**/*
+
+# Exports organizados adicionais
+exports/by_format/**/*.obj
+exports/by_format/**/*.mtl
+exports/by_format/**/*.fbx
+exports/by_format/**/*.stl
+exports/by_format/**/*.glb
+exports/by_format/**/*.gltf
+
+exports/by_project/**/*.obj
+exports/by_project/**/*.mtl  
+exports/by_project/**/*.fbx
+exports/by_project/**/*.stl
+exports/by_project/**/*.glb
+
+exports/archive/**/*
+
+# Modelos Stable Diffusion
+ComfyUI/models/checkpoints/*.safetensors
+ComfyUI/models/checkpoints/*.ckpt
+ComfyUI/models/vae/*.safetensors
+ComfyUI/models/vae/*.ckpt
+ComfyUI/models/vae/*.pt
+ComfyUI/models/clip_vision/*.bin
+ComfyUI/models/clip_vision/*.safetensors
+
+# ============================================
+# Backups e temporários do sistema
+# ============================================
+*.backup
+*.bak.md
+README.md.backup
+.gitignore.backup
+
+# Logs do launcher
+START_AIEXX.log
+SETUP_SD_MODELS.log
+
+# ============================================
+# ComfyUI user data
+# ============================================
+ComfyUI/user/*.db
+ComfyUI/user/*.log
+ComfyUI/user/default/**/*
+
