@@ -53,12 +53,16 @@ if ($nvidiaGPU) {
         # Verificar PyTorch CUDA
         Write-Host "`n🔍 Verificando PyTorch CUDA..." -ForegroundColor Yellow
         
-        $pythonCheck = python -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'CUDA Version: {torch.version.cuda if torch.cuda.is_available() else \"N/A\"}'); print(f'Device Count: {torch.cuda.device_count() if torch.cuda.is_available() else 0}'); print(f'Device Name: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"N/A\"}')" 2>&1
-        
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host $pythonCheck -ForegroundColor White
-        } else {
-            Write-Host "⚠️  PyTorch não encontrado ou erro ao verificar CUDA" -ForegroundColor Yellow
+        try {
+            $pythonCheck = python -c "import torch; print(f'PyTorch: {torch.__version__}'); print(f'CUDA Available: {torch.cuda.is_available()}'); print(f'CUDA Version: {torch.version.cuda if torch.cuda.is_available() else \"N/A\"}'); print(f'Device Count: {torch.cuda.device_count() if torch.cuda.is_available() else 0}'); print(f'Device Name: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"N/A\"}')" 2>&1
+            
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host $pythonCheck -ForegroundColor White
+            } else {
+                Write-Host "⚠️  PyTorch não encontrado ou erro ao verificar CUDA" -ForegroundColor Yellow
+            }
+        } catch {
+            Write-Host "⚠️  Erro ao verificar PyTorch CUDA" -ForegroundColor Yellow
         }
     }
 } else {
