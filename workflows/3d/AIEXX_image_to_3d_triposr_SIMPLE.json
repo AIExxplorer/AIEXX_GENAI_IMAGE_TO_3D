@@ -1,0 +1,107 @@
+{
+  "last_node_id": 4,
+  "last_link_id": 4,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [100, 100],
+      "size": {"0": 315, "1": 314},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [1], "slot_index": 0},
+        {"name": "MASK", "type": "MASK", "links": null}
+      ],
+      "properties": {"Node name for S&R": "LoadImage"},
+      "widgets_values": ["example.png", "image"],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 2,
+      "type": "TripoSRModelLoader",
+      "pos": [100, 480],
+      "size": {"0": 315, "1": 58},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {"name": "TRIPOSR_MODEL", "type": "TRIPOSR_MODEL", "links": [2], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "TripoSRModelLoader"},
+      "widgets_values": ["model.ckpt"]
+    },
+    {
+      "id": 3,
+      "type": "TripoSRSampler",
+      "pos": [500, 100],
+      "size": {"0": 315, "1": 150},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {"name": "triposr_model", "type": "TRIPOSR_MODEL", "link": 2},
+        {"name": "image", "type": "IMAGE", "link": 1}
+      ],
+      "outputs": [
+        {"name": "MESH", "type": "MESH", "links": [3], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "TripoSRSampler"},
+      "widgets_values": [
+        256,
+        "auto"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "SaveMesh",
+      "pos": [900, 100],
+      "size": {"0": 315, "1": 150},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {"name": "mesh", "type": "MESH", "link": 3}
+      ],
+      "properties": {"Node name for S&R": "SaveMesh"},
+      "widgets_values": [
+        "triposr_output",
+        "obj",
+        true,
+        2048
+      ]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 3, 1, "IMAGE"],
+    [2, 2, 0, 3, 0, "TRIPOSR_MODEL"],
+    [3, 3, 0, 4, 0, "MESH"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "workflow_info": {
+      "name": "AIEXX - Image to 3D com TripoSR (SIMPLES)",
+      "description": "Carregue uma foto do seu PC e transforme em modelo 3D usando TripoSR",
+      "version": "1.0",
+      "author": "AIEXX",
+      "usage": [
+        "1. Inicie ComfyUI: 6-START_AIEXX.bat",
+        "2. Acesse http://localhost:8188",
+        "3. Carregue este workflow: Load > AIEXX_image_to_3d_triposr_SIMPLE.json",
+        "4. Clique no nó 'LoadImage' e selecione sua foto",
+        "5. Clique em 'Queue Prompt' para gerar o 3D",
+        "6. O modelo 3D será salvo em ComfyUI/output/"
+      ],
+      "tips": [
+        "Use imagens com fundo limpo ou transparente",
+        "Resolução recomendada: 512x512 ou 1024x1024",
+        "Objeto deve estar centralizado",
+        "Formato de saída: OBJ (compatível com Blender, Maya, etc)"
+      ]
+    }
+  },
+  "version": 0.4
+}
