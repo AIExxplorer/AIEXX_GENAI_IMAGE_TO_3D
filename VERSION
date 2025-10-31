@@ -1,3 +1,11 @@
-1.0.1
-Release Date: 2025-10-31 07:25:51 UTC
+1.1.0
+Release Date: 2025-01-31
 Commit: a93fb55f0666919c2e37796b504a66e2110dc2f3
+Status: Production Ready
+
+Highlights:
+- README.md enterprise-grade com badges e logos
+- Scripts numerados (1- a 6-) para ordem clara
+- Arquivos obsoletos em _deprecated/
+- Documentação completa e profissional
+- GitHub Actions para releases automáticos
