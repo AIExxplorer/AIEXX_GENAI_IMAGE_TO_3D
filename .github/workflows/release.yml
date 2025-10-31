@@ -1,0 +1,249 @@
+name: 🚀 Auto Release & Package
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+env:
+  PROJECT_NAME: AIEXX_GENAI_IMAGE_TO_3D
+
+
+jobs:
+  version:
+    name: 📊 Calculate Version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      release_notes: ${{ steps.changelog.outputs.notes }}
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📈 Calculate Version
+        id: version
+        run: |
+          # Get last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Last tag: $LAST_TAG"
+
+          # Extract version number
+          VERSION=${LAST_TAG#v}
+          echo "Current version: $VERSION"
+
+          # Split version into components
+          IFS='.' read -r -a VERSION_PARTS <<< "$VERSION"
+          MAJOR="${VERSION_PARTS[0]}"
+          MINOR="${VERSION_PARTS[1]}"
+          PATCH="${VERSION_PARTS[2]}"
+
+          # Increment patch version
+          PATCH=$((PATCH + 1))
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+
+          echo "New version: $NEW_VERSION"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: 📝 Generate Changelog
+        id: changelog
+        run: |
+          # Get commits since last tag
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
+
+          echo "## 📋 Changelog" > notes.md
+          echo "" >> notes.md
+
+          # Categorize commits
+          echo "### ✨ Features" >> notes.md
+          git log $LAST_TAG..HEAD --pretty=format:"- %s (%h)" --grep="^feat" >> notes.md || echo "- No new features" >> notes.md
+          echo "" >> notes.md
+          echo "" >> notes.md
+
+          echo "### 🐛 Bug Fixes" >> notes.md
+          git log $LAST_TAG..HEAD --pretty=format:"- %s (%h)" --grep="^fix" >> notes.md || echo "- No bug fixes" >> notes.md
+          echo "" >> notes.md
+          echo "" >> notes.md
+
+          echo "### 📚 Documentation" >> notes.md
+          git log $LAST_TAG..HEAD --pretty=format:"- %s (%h)" --grep="^docs" >> notes.md || echo "- No documentation changes" >> notes.md
+          echo "" >> notes.md
+          echo "" >> notes.md
+
+          echo "### ⚡ Performance" >> notes.md
+          git log $LAST_TAG..HEAD --pretty=format:"- %s (%h)" --grep="^perf" >> notes.md || echo "- No performance improvements" >> notes.md
+          echo "" >> notes.md
+          echo "" >> notes.md
+
+          echo "### 🔧 Other Changes" >> notes.md
+          git log $LAST_TAG..HEAD --pretty=format:"- %s (%h)" --invert-grep --grep="^feat" --grep="^fix" --grep="^docs" --grep="^perf" >> notes.md || echo "- No other changes" >> notes.md
+
+          # Save notes
+          cat notes.md
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          cat notes.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+  release:
+    name: 🎉 Create Release
+    runs-on: ubuntu-latest
+    needs: version
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🏷️ Create Tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag -a "v${{ needs.version.outputs.version }}" -m "Release v${{ needs.version.outputs.version }}"
+          git push origin "v${{ needs.version.outputs.version }}"
+
+      - name: 📦 Create Release Archive
+        run: |
+          # Create release directory
+          mkdir -p release
+
+          # Copy essential files (excluding large models and venv)
+          rsync -av --exclude='.venv*' \
+                   --exclude='ComfyUI/models/**/*.ckpt' \
+                   --exclude='ComfyUI/models/**/*.safetensors' \
+                   --exclude='ComfyUI/output/*' \
+                   --exclude='ComfyUI/input/*' \
+                   --exclude='.git' \
+                   --exclude='node_modules' \
+                   --exclude='__pycache__' \
+                   --exclude='*.pyc' \
+                   --exclude='.vscode' \
+                   --exclude='.idea' \
+                   . release/${{ env.PROJECT_NAME }}/
+
+          # Create archive
+          cd release
+          zip -r ../${{ env.PROJECT_NAME }}-v${{ needs.version.outputs.version }}.zip ${{ env.PROJECT_NAME}}/
+          cd ..
+
+          # Calculate size
+          SIZE=$(du -h ${{ env.PROJECT_NAME }}-v${{ needs.version.outputs.version }}.zip | cut -f1)
+          echo "Archive size: $SIZE"
+          echo "SIZE=$SIZE" >> $GITHUB_ENV
+
+      - name: 🚀 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.version.outputs.version }}
+          name: Release v${{ needs.version.outputs.version }}
+          body: |
+            # 🎉 AIEXX GenAI Image to 3D v${{ needs.version.outputs.version }}
+
+            **Release Date:** ${{ github.event.head_commit.timestamp }}
+            **Commit:** ${{ github.sha }}
+
+            ${{ needs.version.outputs.release_notes }}
+
+            ---
+
+            ## 📥 Installation
+
+            ```batch
+            # Download and extract the archive
+            # Then run:
+            INSTALL_VS_BUILDTOOLS_WINGET.bat
+            FIX_VENV_AND_INSTALL_TORCH_SCATTER.bat
+            RUN_INSTALL_3DPACK.bat
+            DOWNLOAD_3D_MODELS.bat
+            START_AIEXX.bat
+            ```
+
+            ## 📊 Package Information
+
+            - **Archive Size:** ${{ env.SIZE }}
+            - **Models Included:** Configuration files only (download models separately)
+            - **Platform:** Windows 10/11 (64-bit)
+            - **GPU:** NVIDIA RTX 5060 (8GB VRAM) recommended
+
+            ## 🔗 Links
+
+            - [📖 Documentation](https://github.com/${{ github.repository }}/blob/main/README.md)
+            - [🚀 Quick Start](https://github.com/${{ github.repository }}/blob/main/COMO_USAR.md)
+            - [🐛 Report Issues](https://github.com/${{ github.repository }}/issues)
+
+            ---
+
+            **Built with ❤️ by AIEXX | Powered by AI**
+          files: |
+            ${{ env.PROJECT_NAME }}-v${{ needs.version.outputs.version }}.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  package:
+    name: 📦 Create Package
+    runs-on: ubuntu-latest
+    needs: [version, release]
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Build Package Metadata
+        run: |
+          cat > package.json << EOF
+          {
+            "name": "aiexx-genai-image-to-3d",
+            "version": "${{ needs.version.outputs.version }}",
+            "description": "Enterprise-Grade AI-Powered 3D Model Generation System",
+            "repository": {
+              "type": "git",
+              "url": "https://github.com/${{ github.repository }}.git"
+            },
+            "keywords": [
+              "ai",
+              "3d",
+              "stable-diffusion",
+              "pytorch",
+              "cuda",
+              "triposr",
+              "comfyui"
+            ],
+            "author": "AIEXX",
+            "license": "MIT"
+          }
+          EOF
+
+          cat package.json
+
+      - name: 📝 Update VERSION file
+        run: |
+          echo "${{ needs.version.outputs.version }}" > VERSION
+          echo "Release Date: $(date '+%Y-%m-%d %H:%M:%S UTC')" >> VERSION
+          echo "Commit: ${{ github.sha }}" >> VERSION
+
+      - name: 💾 Commit Version Update
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add package.json VERSION 2>/dev/null || true
+          git commit -m "chore: bump version to v${{ needs.version.outputs.version }}" || true
+          git push || true

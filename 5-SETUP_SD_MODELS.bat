@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 > nul
 title AIEXX - Download Stable Diffusion Models
 color 0B
 

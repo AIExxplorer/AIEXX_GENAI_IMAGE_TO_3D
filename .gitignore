@@ -1,20 +1,21 @@
 # ============================================
 # AIEXX GenAI Image to 3D - .gitignore
+# Professional Git Ignore Configuration
+# Version: 1.0.0
 # ============================================
 
 # ============================================
 # Python
 # ============================================
-# Virtual environments
-.venv/
-.venv*/
-venv/
-ENV/
-env/
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
 *.so
+
+# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -34,10 +35,13 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# PyInstaller
 *.manifest
 *.spec
-pip-log.txt
-pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
 .tox/
 .nox/
 .coverage
@@ -46,97 +50,96 @@ pip-delete-this-directory.txt
 nosetests.xml
 coverage.xml
 *.cover
-*.log
+*.py,cover
 .hypothesis/
 .pytest_cache/
-htmlcov/
-.venv
-venv/
-ENV/
-env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
 .spyderproject
 .spyproject
+
+# Rope project settings
 .ropeproject
 
 # ============================================
-# ComfyUI (repositório aninhado)
+# Virtual Environments
 # ============================================
-ComfyUI/
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv311/
+.venv*/
+*.venv
 
 # ============================================
-# Node.js
+# IDEs and Editors
 # ============================================
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.npm
-.eslintcache
-.node_repl_history
-*.tgz
-.yarn-integrity
-.pnp
-.pnp.js
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
 
-# ============================================
-# Modelos e Checkpoints (arquivos grandes)
-# ============================================
-# Zero123 / Zero123++
-ComfyUI/models/zero123/*.safetensors
-ComfyUI/models/zero123/*.ckpt
-ComfyUI/models/zero123/*.pt
-ComfyUI/models/zero123/*.pth
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+out/
 
-# TripoSR
-ComfyUI/models/triposr/*.safetensors
-ComfyUI/models/triposr/*.ckpt
-ComfyUI/models/triposr/*.pt
-ComfyUI/models/triposr/*.pth
-ComfyUI/models/triposr/*.onnx
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
 
-# InstantMesh
-ComfyUI/models/instantmesh/*.safetensors
-ComfyUI/models/instantmesh/*.ckpt
-ComfyUI/models/instantmesh/*.pt
-ComfyUI/models/instantmesh/*.pth
-
-# ControlNet
-ComfyUI/models/controlnet/*.safetensors
-ComfyUI/models/controlnet/*.pth
-ComfyUI/models/controlnet/*.ckpt
-
-# Stable Diffusion e outros modelos
-ComfyUI/models/checkpoints/*.safetensors
-ComfyUI/models/checkpoints/*.ckpt
-ComfyUI/models/vae/*.safetensors
-ComfyUI/models/vae/*.ckpt
-ComfyUI/models/loras/*.safetensors
-ComfyUI/models/embeddings/*.safetensors
-ComfyUI/models/hypernetworks/*.safetensors
-
-# ============================================
-# Arquivos de exportação 3D
-# ============================================
-exports/obj/*.obj
-exports/obj/*.mtl
-exports/fbx/*.fbx
-exports/stl/*.stl
-exports/glb/*.glb
-exports/gltf/*.gltf
-# Mantém estrutura de pastas mas ignora arquivos grandes
-!exports/**/.gitkeep
-
-# ============================================
-# Arquivos temporários e cache
-# ============================================
-*.tmp
-*.temp
+# Vim
 *.swp
 *.swo
 *~
-.DS_Store
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============================================
+# Operating System Files
+# ============================================
+# Windows
 Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
 Desktop.ini
 $RECYCLE.BIN/
 *.cab
@@ -146,49 +149,175 @@ $RECYCLE.BIN/
 *.msp
 *.lnk
 
-# ============================================
-# IDEs e Editores
-# ============================================
-# Visual Studio Code
-.vscode/
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
-# JetBrains IDEs (PyCharm, WebStorm, etc)
-.idea/
-*.iml
-*.iws
-.idea_modules/
-
-# Sublime Text
-*.sublime-workspace
-*.sublime-project
-
-# Vim
-[._]*.s[a-v][a-z]
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
 
 # ============================================
-# Logs e Databases
+# AI Models and Large Files (CRITICAL)
 # ============================================
+# Model weights - NEVER commit these!
+*.ckpt
+*.safetensors
+*.bin
+*.pth
+*.pt
+*.onnx
+*.pb
+*.tflite
+*.h5
+*.pkl
+*.pickle
+
+# Model directories
+ComfyUI/models/**/*.ckpt
+ComfyUI/models/**/*.safetensors
+ComfyUI/models/**/*.bin
+ComfyUI/models/**/*.pth
+ComfyUI/models/**/*.pt
+ComfyUI/models/**/*.onnx
+
+# Specific model paths
+ComfyUI/models/checkpoints/*.safetensors
+ComfyUI/models/checkpoints/*.ckpt
+ComfyUI/models/vae/*.safetensors
+ComfyUI/models/vae/*.ckpt
+ComfyUI/models/vae/*.pt
+ComfyUI/models/clip_vision/*.bin
+ComfyUI/models/clip_vision/*.safetensors
+ComfyUI/models/loras/*.safetensors
+ComfyUI/models/embeddings/*.safetensors
+ComfyUI/models/hypernetworks/*.safetensors
+ComfyUI/models/triposr/*.ckpt
+ComfyUI/models/triposr/*.pth
+ComfyUI/models/zero123/*.safetensors
+ComfyUI/models/zero123/*.ckpt
+ComfyUI/models/instantmesh/*.ckpt
+ComfyUI/models/controlnet/*.safetensors
+
+# Exclude model metadata (keep these small files)
+!ComfyUI/models/**/config.json
+!ComfyUI/models/**/model_index.json
+!ComfyUI/models/**/README.md
+!ComfyUI/models/**/.gitkeep
+
+# ============================================
+# ComfyUI Specific
+# ============================================
+# ComfyUI repository (if submodule)
+ComfyUI/
+
+# User inputs and outputs
+ComfyUI/input/*
+!ComfyUI/input/.gitkeep
+
+ComfyUI/output/*
+!ComfyUI/output/.gitkeep
+
+ComfyUI/temp/*
+!ComfyUI/temp/.gitkeep
+
+# ComfyUI cache and logs
+ComfyUI/custom_nodes/**/__pycache__/
+ComfyUI/custom_nodes/**/*.pyc
+ComfyUI/custom_nodes/*/
+!ComfyUI/custom_nodes/README.md
+!ComfyUI/custom_nodes/ComfyUI-3D-Pack/
+ComfyUI/web/extensions-node_modules/
+comfy.log
+
+# ComfyUI user settings
+ComfyUI/extra_model_paths.yaml
+ComfyUI/user/*.db
+ComfyUI/user/*.log
+ComfyUI/user/default/**/*
+
+# ============================================
+# 3D Export Files
+# ============================================
+# Generated 3D models (large files)
+exports/obj/*.obj
+exports/obj/*.mtl
+exports/fbx/*.fbx
+exports/stl/*.stl
+exports/glb/*.glb
+exports/gltf/*.gltf
+exports/by_format/**/*.obj
+exports/by_format/**/*.mtl
+exports/by_format/**/*.fbx
+exports/by_format/**/*.stl
+exports/by_format/**/*.glb
+exports/by_format/**/*.gltf
+exports/by_project/**/*
+exports/archive/**/*
+exports/generated/*
+
+# Keep directory structure
+!exports/**/.gitkeep
+
+# Textures and materials
+assets/textures/**/*.png
+assets/textures/**/*.jpg
+assets/textures/**/*.exr
+assets/hdris/**/*.hdr
+assets/hdris/**/*.exr
+assets/references/**/*
+
+# Blender backup files
+*.blend1
+*.blend2
+*.blend@
+*.bphys
+
+# ============================================
+# Project Specific
+# ============================================
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+.history/
+
+# Logs
 *.log
 logs/
+log/
+downloads_status.log
+START_AIEXX.log
+SETUP_SD_MODELS.log
+
+# Database
+*.db
 *.sql
 *.sqlite
-*.db
+*.sqlite3
 
-# Status logs do projeto
-downloads_status.log
-
-# ============================================
-# Variáveis de ambiente e configurações sensíveis
-# ============================================
+# Environment variables and secrets
 .env
 .env.local
 .env.*.local
@@ -200,143 +329,193 @@ secrets.json
 credentials.json
 auth.json
 
-# Tokens e credenciais - NUNCA COMMITAR!
+# Hugging Face and API tokens - CRITICAL: NEVER COMMIT!
 .huggingface/
 .hf_token
 *.token
 *_token.txt
 hf_token*
 huggingface_token*
-
-# API Keys
 *api_key*
 *apikey*
 *.key
 *.pem
 *.cert
+*.p12
 
-# MCP configurations com credenciais
+# MCP configurations with credentials
 .mcp/credentials/
 mcp_config.local.json
 
-# ============================================
-# ComfyUI específico
-# ============================================
-ComfyUI/input/*
-ComfyUI/output/*
-ComfyUI/temp/*
-!ComfyUI/input/.gitkeep
-!ComfyUI/output/.gitkeep
-!ComfyUI/temp/.gitkeep
-
-# User data e custom nodes
-ComfyUI/custom_nodes/*/
-!ComfyUI/custom_nodes/README.md
+# Size calculation cache
+project_sizes.json
 
 # ============================================
-# Blender e ferramentas 3D
+# Build Tools and Dependencies
 # ============================================
-*.blend1
-*.blend2
-*.blend@
-*.bphys
+# Node modules (if any frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+.npm
+.eslintcache
+.node_repl_history
+*.tgz
+.yarn-integrity
+.pnp
+.pnp.js
+
+# CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
 
 # ============================================
-# Arquivos de sistema
-# ============================================
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-ehthumbs_vista.db
-
-# ============================================
-# Git LFS (para rastreamento de arquivos grandes)
-# ============================================
-.gitattributes
-
-# ============================================
-# Documentação gerada
+# Documentation Build
 # ============================================
 docs/_build/
+docs/_static/
+docs/_templates/
 site/
 
+# Sphinx
+docs/build/
+
 # ============================================
-# Testes
+# Testing
 # ============================================
-.coverage
 .pytest_cache/
+.coverage
+htmlcov/
+*.cover
 test-results/
 *.test.js.snap
 
 # ============================================
-# Outros
+# Workflows
 # ============================================
-*.bak
-*.orig
-*.rej
-.history/
-
-# ============================================
-# AIEXX System - Novos Diretórios
-# ============================================
-
-# Workflows organizados
+# Keep workflow JSON files but not preview images
 workflows/3d/basic/*.png
 workflows/3d/basic/*.jpg
 workflows/3d/advanced/*.png
 workflows/3d/advanced/*.jpg
-workflows/3d/experimental/*.json
 workflows/3d/experimental/*.png
+workflows/3d/experimental/*.jpg
 
-# Assets
-assets/textures/**/*.png
-assets/textures/**/*.jpg
-assets/textures/**/*.exr
-assets/hdris/**/*.hdr
-assets/hdris/**/*.exr
-assets/references/**/*
-
-# Exports organizados adicionais
-exports/by_format/**/*.obj
-exports/by_format/**/*.mtl
-exports/by_format/**/*.fbx
-exports/by_format/**/*.stl
-exports/by_format/**/*.glb
-exports/by_format/**/*.gltf
-
-exports/by_project/**/*.obj
-exports/by_project/**/*.mtl  
-exports/by_project/**/*.fbx
-exports/by_project/**/*.stl
-exports/by_project/**/*.glb
-
-exports/archive/**/*
-
-# Modelos Stable Diffusion
-ComfyUI/models/checkpoints/*.safetensors
-ComfyUI/models/checkpoints/*.ckpt
-ComfyUI/models/vae/*.safetensors
-ComfyUI/models/vae/*.ckpt
-ComfyUI/models/vae/*.pt
-ComfyUI/models/clip_vision/*.bin
-ComfyUI/models/clip_vision/*.safetensors
+# Keep production workflows
+!workflows/3d/**/*.json
 
 # ============================================
-# Backups e temporários do sistema
+# Git and Version Control
 # ============================================
-*.backup
+# Git conflict markers
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*
+*_BASE_*
+*_LOCAL_*
+*_REMOTE_*
+
+# Git LFS
+.gitattributes
+
+# ============================================
+# Compressed Archives
+# ============================================
+# General archives
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+
+# Exclude release archives
+!releases/*.zip
+!releases/*.tar.gz
+
+# ============================================
+# Backups
+# ============================================
 *.bak.md
+*.backup
 README.md.backup
 .gitignore.backup
 
-# Logs do launcher
-START_AIEXX.log
-SETUP_SD_MODELS.log
+# ============================================
+# Keep Essential Files
+# ============================================
+# Keep these important directories
+!workflows/
+!workflows/3d/
+!workflows/3d/**/*.json
+
+# Keep documentation
+!docs/
+!*.md
+!*.MD
+!*.rst
+!*.txt
+
+# Keep configuration templates
+!*.example
+!*.template
+!*.sample
+
+# Keep scripts
+!*.bat
+!*.sh
+!*.ps1
+!*.py
+
+# Keep empty directories with .gitkeep
+!.gitkeep
+!**/.gitkeep
+
+# Keep GitHub workflows
+!.github/
+!.github/workflows/
+!.github/workflows/*.yml
+!.github/workflows/*.yaml
 
 # ============================================
-# ComfyUI user data
+# End of .gitignore
 # ============================================
-ComfyUI/user/*.db
-ComfyUI/user/*.log
-ComfyUI/user/default/**/*
-

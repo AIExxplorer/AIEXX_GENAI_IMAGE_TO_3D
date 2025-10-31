@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 > nul
 title AIEXX GenAI - Image to 3D GPU Launcher
 color 0A
 
@@ -34,7 +33,7 @@ REM ============================================
 
 echo   [1/5] Checking system requirements...
 
-REM Verificar se está no diretório correto
+REM Verificar se esta no diretorio correto
 if not exist "ComfyUI\main.py" (
     color 0C
     echo.
@@ -177,7 +176,7 @@ echo.
 echo   ════════════════════════════════════════════════════════════════
 echo.
 
-REM Pequeno delay para visualização
+REM Pequeno delay para visualizacao
 timeout /t 2 >nul
 
 REM ============================================
