@@ -1,31 +1,20 @@
 {
   "name": "aiexx-genai-image-to-3d",
-  "version": "1.0.0",
-  "description": "AIEXX GenAI Image to 3D - Pipeline completo para conversão de imagens 2D em malhas 3D usando Zero123++, TripoSR, InstantMesh e ControlNet",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
-  },
-  "keywords": [
-    "3d-reconstruction",
-    "image-to-3d",
-    "zero123",
-    "triposr",
-    "instantmesh",
-    "controlnet",
-    "comfyui",
-    "generative-ai"
-  ],
-  "author": "AIEXX",
-  "license": "MIT",
+  "version": "1.0.1",
+  "description": "Enterprise-Grade AI-Powered 3D Model Generation System",
   "repository": {
     "type": "git",
     "url": "https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D.git"
   },
-  "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "husky": "^9.1.7"
-  }
+  "keywords": [
+    "ai",
+    "3d",
+    "stable-diffusion",
+    "pytorch",
+    "cuda",
+    "triposr",
+    "comfyui"
+  ],
+  "author": "AIEXX",
+  "license": "MIT"
 }
