@@ -25,11 +25,12 @@
 ---
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&logo=semantic-release)](https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.11.9-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.7.0-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![CUDA](https://img.shields.io/badge/CUDA-12.8-76B900?style=for-the-badge&logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
 
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-yellow?style=for-the-badge)](https://huggingface.co/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D)
 [![GPU Optimized](https://img.shields.io/badge/GPU-RTX%205060%20Optimized-76B900.svg?style=for-the-badge&logo=nvidia)](https://www.nvidia.com/)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-Latest-orange.svg?style=for-the-badge)](https://github.com/comfyanonymous/ComfyUI)
 [![Stable Diffusion](https://img.shields.io/badge/Stable%20Diffusion-1.5-blueviolet?style=for-the-badge)](https://huggingface.co/)
@@ -649,18 +650,40 @@ black . --line-length 100
 
 ## 📜 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **Apache License 2.0** - see the [LICENSE](LICENSE) file for details.
 
 ```
-MIT License
+Apache License 2.0
 
 Copyright (c) 2025 AIEXX
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software...
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+### 🤗 Model on Hugging Face
+
+The trained model weights and configurations are available on Hugging Face:
+
+**[📦 Download Model: AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D](https://huggingface.co/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D)**
+
+```python
+from huggingface_hub import hf_hub_download
+
+# Download model weights
+model_path = hf_hub_download(
+    repo_id="AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D",
+    filename="model/model.ckpt"
+)
 ```
 
 ---
