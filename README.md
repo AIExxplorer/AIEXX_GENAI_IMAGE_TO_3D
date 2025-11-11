@@ -24,7 +24,7 @@
 
 ---
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&logo=semantic-release)](https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D/releases)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg?style=for-the-badge&logo=semantic-release)](https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.11.9-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.7.0-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
