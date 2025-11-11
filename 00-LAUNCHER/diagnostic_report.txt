@@ -1,0 +1,14 @@
+========================================================================
+  AIEXX Diagnostic Report
+  Generated: 01/11/2025 16:48:57,92
+========================================================================
+
+Current Directory: C:\AIEXX_GENAI_IMAGE_TO_3D\00-LAUNCHER
+
+Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Apps > Advanced app settings > App execution aliases.
+Virtual Environment: NOT FOUND
+ComfyUI: NOT FOUND
+
+Batch Files:
+AIEXX_LAUNCHER.bat
+DIAGNOSTIC_TEST.bat

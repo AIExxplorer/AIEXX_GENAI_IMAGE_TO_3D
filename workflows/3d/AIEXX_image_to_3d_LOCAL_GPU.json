@@ -1,0 +1,255 @@
+{
+  "last_node_id": 9,
+  "last_link_id": 12,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [50, 150],
+      "size": {"0": 315, "1": 314},
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {"name": "IMAGE", "type": "IMAGE", "links": [1, 7], "slot_index": 0},
+        {"name": "MASK", "type": "MASK", "links": null}
+      ],
+      "properties": {"Node name for S&R": "LoadImage"},
+      "widgets_values": ["example.png", "image"],
+      "color": "#223",
+      "bgcolor": "#335",
+      "title": "📷 Carregar Sua Imagem"
+    },
+    {
+      "id": 2,
+      "type": "TripoSRModelLoader",
+      "pos": [50, 520],
+      "size": {"0": 315, "1": 58},
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {"name": "TRIPOSR_MODEL", "type": "TRIPOSR_MODEL", "links": [2], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "TripoSRModelLoader"},
+      "widgets_values": ["model.ckpt"],
+      "title": "🔧 Carregar Modelo TripoSR"
+    },
+    {
+      "id": 3,
+      "type": "TripoSRSampler",
+      "pos": [450, 150],
+      "size": {"0": 350, "1": 150},
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {"name": "triposr_model", "type": "TRIPOSR_MODEL", "link": 2},
+        {"name": "image", "type": "IMAGE", "link": 1}
+      ],
+      "outputs": [
+        {"name": "MESH", "type": "MESH", "links": [3, 8], "slot_index": 0}
+      ],
+      "properties": {"Node name for S&R": "TripoSRSampler"},
+      "widgets_values": [
+        256,
+        "auto"
+      ],
+      "title": "🎨 Gerar Modelo 3D (GPU Local)"
+    },
+    {
+      "id": 4,
+      "type": "Preview3DMesh",
+      "pos": [850, 150],
+      "size": {"0": 400, "1": 400},
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {"name": "mesh", "type": "MESH", "link": 3}
+      ],
+      "properties": {"Node name for S&R": "Preview3DMesh"},
+      "widgets_values": [
+        "orbit",
+        1.5,
+        45,
+        30,
+        true,
+        true
+      ],
+      "title": "👁️ Visualizar 3D (Preview)"
+    },
+    {
+      "id": 5,
+      "type": "SaveMesh",
+      "pos": [1300, 150],
+      "size": {"0": 315, "1": 180},
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {"name": "mesh", "type": "MESH", "link": 8}
+      ],
+      "properties": {"Node name for S&R": "SaveMesh"},
+      "widgets_values": [
+        "AIEXX_3D_OUTPUT",
+        "glb",
+        true,
+        2048
+      ],
+      "title": "💾 Salvar Modelo 3D (GLB)"
+    },
+    {
+      "id": 6,
+      "type": "ImagePreview",
+      "pos": [50, 650],
+      "size": {"0": 315, "1": 314},
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {"name": "images", "type": "IMAGE", "link": 7}
+      ],
+      "properties": {"Node name for S&R": "ImagePreview"},
+      "title": "🖼️ Preview da Imagem Original"
+    },
+    {
+      "id": 7,
+      "type": "Note",
+      "pos": [1300, 380],
+      "size": {"0": 315, "1": 200},
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["🎉 WORKFLOW LOCAL - SEM CUSTOS! 🎉\n\n✅ Usa sua GPU (sem API paga)\n✅ Processamento 100% local\n✅ Privacidade total\n✅ Formato GLB (universal)\n✅ Texturas de alta qualidade\n\n📁 Saída: ComfyUI/output/AIEXX_3D_OUTPUT_xxxxx.glb\n\n🚀 Tempo médio: 30-60 segundos\n💻 VRAM: ~3-5GB"],
+      "bgcolor": "#432",
+      "title": "ℹ️ Informações"
+    },
+    {
+      "id": 8,
+      "type": "SaveMesh",
+      "pos": [1300, 620],
+      "size": {"0": 315, "1": 180},
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {"name": "mesh", "type": "MESH", "link": null}
+      ],
+      "properties": {"Node name for S&R": "SaveMesh"},
+      "widgets_values": [
+        "AIEXX_3D_OUTPUT",
+        "obj",
+        true,
+        2048
+      ],
+      "title": "💾 Salvar também como OBJ (opcional)"
+    },
+    {
+      "id": 9,
+      "type": "Note",
+      "pos": [450, 350],
+      "size": {"0": 350, "1": 150},
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "properties": {"text": ""},
+      "widgets_values": ["⚙️ CONFIGURAÇÕES:\n\n• Resolution: 256 = rápido, 512 = melhor qualidade\n• chunk_size: 'auto' ajusta automaticamente\n\n💡 DICA: Para objetos complexos, use 256.\nPara detalhes finos, tente 512 (mais VRAM)."],
+      "bgcolor": "#234",
+      "title": "⚙️ Configurações do Modelo"
+    }
+  ],
+  "links": [
+    [1, 1, 0, 3, 1, "IMAGE"],
+    [2, 2, 0, 3, 0, "TRIPOSR_MODEL"],
+    [3, 3, 0, 4, 0, "MESH"],
+    [7, 1, 0, 6, 0, "IMAGE"],
+    [8, 3, 0, 5, 0, "MESH"]
+  ],
+  "groups": [
+    {
+      "title": "🔵 ENTRADA - Sua Imagem",
+      "bounding": [20, 50, 370, 940],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "🟢 PROCESSAMENTO - GPU Local",
+      "bounding": [420, 50, 410, 520],
+      "color": "#3e8e41",
+      "font_size": 24
+    },
+    {
+      "title": "🟣 SAÍDA - Modelo 3D",
+      "bounding": [1270, 50, 370, 780],
+      "color": "#88388e",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "workflow_info": {
+      "name": "AIEXX - Image to 3D LOCAL GPU (Sem Custos)",
+      "description": "Transforme qualquer imagem em modelo 3D usando sua GPU local - ZERO custos com API!",
+      "version": "2.0",
+      "author": "AIEXX",
+      "created": "2025-11-02",
+      "features": [
+        "✅ 100% LOCAL - usa sua própria GPU",
+        "✅ SEM CUSTOS - não usa API paga",
+        "✅ PRIVACIDADE - suas imagens não saem do PC",
+        "✅ RÁPIDO - 30-60 segundos por modelo",
+        "✅ QUALIDADE PROFISSIONAL - texturas 2K",
+        "✅ FORMATOS UNIVERSAIS - GLB, OBJ"
+      ],
+      "usage": [
+        "1. Inicie o sistema: 6-START_AIEXX.bat (ou START.bat)",
+        "2. Abra navegador: http://localhost:8188",
+        "3. Carregue este workflow: Load > AIEXX_image_to_3d_LOCAL_GPU.json",
+        "4. Clique no nó '📷 Carregar Sua Imagem' e selecione sua foto",
+        "5. Clique em 'Queue Prompt' (botão no canto superior direito)",
+        "6. Aguarde 30-60 segundos",
+        "7. Modelo 3D salvo em: ComfyUI/output/"
+      ],
+      "tips": [
+        "📸 IMAGEM IDEAL:",
+        "  - Fundo limpo ou transparente",
+        "  - Objeto centralizado",
+        "  - Boa iluminação",
+        "  - Resolução: 512x512 até 2048x2048",
+        "",
+        "⚡ PERFORMANCE:",
+        "  - Resolution 256: Mais rápido (~30s)",
+        "  - Resolution 512: Melhor qualidade (~60s)",
+        "",
+        "💾 VRAM NECESSÁRIA:",
+        "  - 256 resolution: ~3GB VRAM",
+        "  - 512 resolution: ~5GB VRAM",
+        "",
+        "🎨 FORMATOS DE SAÍDA:",
+        "  - GLB: Universal (Unity, Unreal, Web)",
+        "  - OBJ: Blender, Maya, 3ds Max"
+      ],
+      "requirements": {
+        "gpu": "NVIDIA GPU com CUDA (RTX 5060 ou similar)",
+        "vram": "4GB mínimo, 8GB recomendado",
+        "models": [
+          "TripoSR: ComfyUI/models/triposr/model.ckpt"
+        ]
+      },
+      "vs_tripo_api": {
+        "title": "POR QUE ESTE WORKFLOW É MELHOR QUE TRIPO API:",
+        "advantages": [
+          "💰 CUSTO: $0.00 vs ~$0.10-0.25 por modelo",
+          "🔒 PRIVACIDADE: Suas imagens ficam no seu PC",
+          "⚡ VELOCIDADE: Sem latência de rede/API",
+          "🎮 CONTROLE: Ajuste parâmetros em tempo real",
+          "📦 OFFLINE: Funciona sem internet (após download inicial)"
+        ]
+      }
+    }
+  },
+  "version": 0.4
+}
+

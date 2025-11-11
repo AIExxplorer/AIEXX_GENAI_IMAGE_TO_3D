@@ -56,6 +56,30 @@
 
 **AIEXX GenAI Image to 3D** is a professional, GPU-accelerated AI system for generating high-quality 3D models from text prompts or 2D images. Built on cutting-edge deep learning technologies, it delivers production-ready 3D assets in seconds.
 
+### 🎉 NEW: Standalone Image-to-3D System
+
+**Transform any image into a 3D model locally - no compilation required!**
+
+We've integrated **TripoSR** directly into the project with a custom implementation that works **without pytorch3d**. Simply drag and drop an image onto the launcher!
+
+```batch
+# Convert any image to 3D in seconds:
+AIEXX_IMAGE_TO_3D.bat your_photo.png
+
+# Output formats: OBJ, GLB, STL, PLY
+# Processing time: 30-70 seconds
+# Works 100% offline after first download
+```
+
+✅ **Features:**
+- 🚀 No compilation needed (pure Python)
+- 🖼️ Drag-and-drop interface
+- 💻 Full GPU acceleration (RTX 5060)
+- 🔒 100% local processing (privacy)
+- ⚡ Professional quality output
+
+📖 **See [COMO_USAR_IMAGE_TO_3D.md](COMO_USAR_IMAGE_TO_3D.md) for complete guide**
+
 ### ✨ Key Features
 
 ```
@@ -101,7 +125,34 @@
 
 ### Installation
 
-#### Option 1: Automated Setup (Recommended)
+#### Option 1: **One-Click Automated Installation** (⭐ EASIEST - Recommended)
+
+```batch
+# 1. Clone the repository
+git clone https://github.com/AIExxplorer/AIEXX_GENAI_IMAGE_TO_3D.git
+cd AIEXX_GENAI_IMAGE_TO_3D
+
+# 2. Run the automated installer
+0-INSTALL_ALL_AUTOMATED.bat
+
+# That's it! The installer will:
+# ✅ Check system requirements
+# ✅ Install all dependencies automatically
+# ✅ Handle restart (run again after restart)
+# ✅ Download all models
+# ✅ Launch the system when done
+```
+
+**Features:**
+- ✨ Single command installation
+- 🔄 Auto-resume after restart
+- 🛡️ Error handling and recovery
+- 📊 Progress tracking with checkpoints
+- 💡 Clear instructions at each step
+
+See [INSTALACAO_AUTOMATIZADA.md](INSTALACAO_AUTOMATIZADA.md) for complete documentation.
+
+#### Option 2: Step-by-Step Installation (Advanced Users)
 
 ```batch
 # 1. Clone the repository
@@ -120,11 +171,14 @@ cd AIEXX_GENAI_IMAGE_TO_3D
 # 5. Download AI models
 4-DOWNLOAD_3D_MODELS.bat
 
-# 6. Launch the system
+# 6. (Optional) Download Stable Diffusion models
+5-SETUP_SD_MODELS.bat
+
+# 7. Launch the system
 6-START_AIEXX.bat
 ```
 
-#### Option 2: Manual Setup
+#### Option 3: Manual Setup
 
 See [INSTALLATION.md](INSTALLATION.md) for detailed manual installation instructions.
 

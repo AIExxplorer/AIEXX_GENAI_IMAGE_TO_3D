@@ -148,6 +148,7 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+nul
 
 # macOS
 .DS_Store
@@ -293,6 +294,10 @@ assets/references/**/*
 # ============================================
 # Project Specific
 # ============================================
+# User test images (private)
+MINHAS_IMAGENS_TESTE/
+MINHAS_IMAGENS_TESTE/*
+
 # Temporary files
 *.tmp
 *.temp
